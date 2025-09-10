@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 1.5rem 2rem;
+      background: #111;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      margin: 0 0 0.5rem 0;
+      text-align: left;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1rem;
+      color: #bbb;
+      text-align: left;
+    }
+
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .row {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .row img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.5s ease;
+      filter: brightness(70%);
+    }
+
+    .row:hover img {
+      transform: scale(1.05);
+      filter: brightness(50%);
+    }
+
+    .row .info {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .row .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    }
+
+    .expand-btn {
+      background: rgba(255,255,255,0.85);
+      color: #000;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .expand-btn:hover {
+      background: #fff;
+    }
+
+    /* Sliding panel */
+    .panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 600px;
+      height: 100%;
+      background: #111;
+      color: #fff;
+      padding: 2rem;
+      overflow-y: auto;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.7);
+      transition: right 0.5s ease;
+      z-index: 1000;
+    }
+
+    .panel.open {
+      right: 0;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .panel p {
+      color: #bbb;
+      margin: 1rem 0;
+    }
+
+    .panel video,
+    .panel img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    footer {
+      background: #111;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+
+    footer .socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    footer .socials svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+      transition: fill 0.3s ease;
+      cursor: pointer;
+    }
+
+    footer .socials svg:hover {
+      fill: #e50914;
+    }
+
+    @media (max-width: 600px) {
+      .row { height: 140px; }
+      .row .title { font-size: 1.1rem; }
+      .expand-btn { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+      footer { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Work</h1>
+    <p>manu weis blablabla Explore unique exhibitions and creative works. Click the expand button on each row to reveal media and details.</p>
+  </header>
+
+  <div class="gallery">
+    <div class="row" data-title="Animated Women/Animated World" data-content="An exploration of animation from female voices around the world." data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+      <img src="images/img1.jpg" alt="Animated Women/Animated World">
+      <div class="info">
+        <div class="title">Animated Women/Animated World</div>
+        <div class="expand-btn">Expand</div>
+      </div>
+    </div>
+    <div class="row" data-title="From One World to Another" data-content="Crossing cultural and creative boundaries through art." data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+      <img src="images/img2.jpg" alt="From One World to Another">
+      <div class="info">
+        <div class="title">From One World to Another</div>
+        <div class="expand-btn">Expand</div>
+      </div>
+    </div>
+    <div class="row" data-title="My Name is Ola" data-content="A personal story told through unique visual storytelling." data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+      <img src="images/img3.jpg" alt="My Name is Ola">
+      <div class="info">
+        <div class="title">My Name is Ola</div>
+        <div class="expand-btn">Expand</div>
+      </div>
+    </div>
+    <div class="row" data-title="XR Exhibitions" data-content="Immersive virtual and augmented reality showcases." data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+      <img src="images/img4.jpg" alt="XR Exhibitions">
+      <div class="info">
+        <div class="title">XR Exhibitions</div>
+        <div class="expand-btn">Expand</div>
+      </div>
+    </div>
+    <div class="row" data-title="Ted Sieger's Molly Monster" data-content="A delightful animated journey for all ages." data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+      <img src="images/img5.jpg" alt="Molly Monster">
+      <div class="info">
+        <div class="title">Ted Sieger's Molly Monster</div>
+        <div class="expand-btn">Expand</div>
+      </div>
+    </div>
+    <div class="row" data-title="BAKA" data-content="An artistic exploration of cultural identity." data-video="https://www.w3schools.com/html/mov_bbb.mp4">
+      <img src="images/img6.jpg" alt="BAKA">
+      <div class="info">
+        <div class="title">BAKA</div>
+        <div class="expand-btn">Expand</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel">
+    <div class="close-btn" id="closeBtn">&times;</div>
+    <h2 id="panelTitle">Title</h2>
+    <p id="panelContent">Content</p>
+    <video id="panelVideo" controls></video>
+  </div>
+
+  <footer>
+    <div>© 2025 Showcase. All rights reserved.</div>
+    <div class="socials">
+      <!-- Social icons omitted for brevity -->
+    </div>
+  </footer>
+
+  <script>
+    const rows = document.querySelectorAll('.row');
+    const panel = document.getElementById('panel');
+    const closeBtn = document.getElementById('closeBtn');
+    const panelTitle = document.getElementById('panelTitle');
+    const panelContent = document.getElementById('panelContent');
+    const panelVideo = document.getElementById('panelVideo');
+
+    rows.forEach(row => {
+      row.querySelector('.expand-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const title = row.dataset.title;
+        const content = row.dataset.content;
+        const video = row.dataset.video;
+
+        panelTitle.textContent = title;
+        panelContent.textContent = content;
+        panelVideo.src = video;
+
+        panel.classList.add('open');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      panel.classList.remove('open');
+      panelVideo.pause();
+    });
+  </script>
+</body>
+</html>
