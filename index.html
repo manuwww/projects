@@ -1,94 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Work</title>
 <style>
-  body { margin:0; font-family:Arial,sans-serif; background:#0d0d0d; color:#fff; line-height:1.6; }
-  header { padding:1.5rem 2rem; background:#111; }
-  header h1 { font-size:2.2rem; margin:0 0 0.5rem 0; text-align:left; }
-  header p { margin:0; font-size:1rem; color:#bbb; text-align:left; }
-  .gallery { display:flex; flex-direction:column; width:100%; }
-  .row { position:relative; width:100%; height:180px; overflow:hidden; cursor:pointer; }
-  .row img { width:100%; height:100%; object-fit:cover; transition: transform 0.5s ease, filter 0.5s ease; filter:brightness(70%); }
-  .row:hover img { transform:scale(1.05); filter:brightness(50%); }
-  .row .info { position:absolute; bottom:1rem; left:1rem; right:1rem; display:flex; justify-content:space-between; align-items:center; }
-  .row .title { font-size:1.5rem; font-weight:bold; text-shadow:2px 2px 5px rgba(0,0,0,0.8); }
-  .expand-btn { background:rgba(255,255,255,0.85); color:#000; padding:0.4rem 0.8rem; border-radius:6px; font-size:0.9rem; transition:background 0.3s ease; cursor:pointer; }
-  .expand-btn:hover { background:#fff; }
-  .panel { position:fixed; top:0; right:-100%; width:100%; max-width:600px; height:100%; background:#111; color:#fff; padding:2rem; overflow-y:auto; box-shadow:-5px 0 20px rgba(0,0,0,0.7); transition:right 0.5s ease; z-index:1000; }
-  .panel.open { right:0; }
-  .panel h2 { margin-top:0; font-size:2rem; }
-  .panel p { color:#bbb; margin:1rem 0; }
-  .panel img, .panel iframe { max-width:100%; border-radius:12px; margin:1rem 0; display:block; }
-  .close-btn { position:absolute; top:1rem; right:1rem; font-size:2rem; cursor:pointer; color:#fff; }
-  footer { background:#111; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; color:#bbb; font-size:0.9rem; }
-  footer .socials { display:flex; gap:1rem; }
-  footer .socials svg { width:20px; height:20px; fill:#fff; transition:fill 0.3s ease; cursor:pointer; }
-  footer .socials svg:hover { fill:#e50914; }
-  @media (max-width:600px) { .row{height:140px;} .row .title{font-size:1.1rem;} .expand-btn{font-size:0.75rem; padding:0.3rem 0.6rem;} footer{flex-direction:column; gap:0.5rem;} }
+  /* Base Styles */
+  body {
+    margin: 0;
+    font-family: Arial,sans-serif;
+    background: #0d0d0d;
+    color: #fff;
+    line-height: 1.6;
+  }
+  header {
+    padding: 1.5rem 2rem;
+    background: #111;
+  }
+  header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    margin: 0 0 0.5rem 0;
+  }
+  header p {
+    margin: 0.5rem 0;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    color: #bbb;
+  }
+
+  /* Gallery */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .row {
+    position: relative;
+    width: 100%;
+    height: clamp(120px, 20vw, 180px);
+    overflow: hidden;
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+  .row img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    filter: brightness(70%);
+  }
+  .row:hover img {
+    transform: scale(1.05);
+    filter: brightness(50%);
+  }
+  .row .info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .row .title {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+  }
+  .expand-btn {
+    background: rgba(255,255,255,0.85);
+    color: #000;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+  .expand-btn:hover { background: #fff; }
+
+  /* Panel */
+  .panel {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background: #111;
+    color: #fff;
+    padding: 2rem;
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.7);
+    transition: right 0.5s ease;
+    z-index: 1000;
+  }
+  .panel.open { right: 0; }
+  .panel h2 { margin-top: 0; font-size: clamp(1.5rem, 4vw, 2rem); }
+  .panel p { color: #bbb; margin: 1rem 0; }
+  .panel img, .panel iframe {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 1rem 0;
+    display: block;
+  }
+  .panel iframe.splats-frame { height: clamp(300px, 50vw, 500px); }
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  /* Footer */
+  footer {
+    background: #111;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #bbb;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .row { height: clamp(100px, 25vw, 140px); }
+    .panel { max-width: 100%; padding: 1.5rem; }
+  }
 </style>
 </head>
 <body>
+
 <header>
   <h1>Work (selection)</h1>
-  <p>Manuela Weiss ist Creative XR Producer und Director mit einem BA in Animation von der HSLU.</p><p> Mit einem Hintergrund in Animation und interaktiven Medien arbeitet sie an der Schnittstelle von Storytelling, Kunst und Technologie.</p>
+  <p>Manuela Weiss ist Creative XR Producerin und Animatorin mit einem BA in Animation der HSLU.</p>
+  <p>Mit einem Hintergrund in Animation, Design und interaktiven Medien arbeitet sie an der Schnittstelle von Storytelling, Kunst und Technologie.</p>
 </header>
 
 <div class="gallery">
-  <!-- Rows 1-4: same image -->
-  <div class="row" data-type="image" data-title="Animated Women/Animated World" data-content="Ausstellungsreihe mit AR-Selbstporträts, Postern und Kunstwerken von Künstler:innen aus aller Welt, in Zusammenarbeit mit internationalen Festivals.
-
-" data-src="images/img1.jpg">
-    <img src="images/img1.jpg" alt="Animated Women/Animated World">
+  <!-- Row 1: Gaussian Splats Collection -->
+  <div class="row" data-type="splats" data-title="Gaussian Splats Collection" 
+       data-content="5 explorative Gaussian Splats (3DGS) Tests für die Microserie Hello WRLD." data-src="">
+    <img src="images/img1.jpg" alt="Gaussian Splats Collection">
     <div class="info">
-      <div class="title">Animated Women/Animated World</div>
+      <div class="title">3DGS Experiments (Hello WRLD)</div>
       <div class="expand-btn">Expand</div>
     </div>
   </div>
+
+  <!-- Row 2: From One World to Another -->
   <div class="row" data-type="image" data-title="From One World to Another" 
-    data-content=" VR-Erlebnis zum Thema Migration, basierend auf einem Interview mit Rob Ashley, der aus Liebe von Australien in die Schweiz zog." data-src="images/img2.jpg">
+       data-content="VR-Erlebnis zum Thema Migration, basierend auf einem Interview mit Rob Ashley, der aus Liebe von Australien in die Schweiz zog." data-src="images/img2.jpg">
     <img src="images/img2.jpg" alt="From One World to Another">
     <div class="info">
       <div class="title">From One World to Another</div>
       <div class="expand-btn">Expand</div>
     </div>
   </div>
+
+  <!-- Row 3: My Name is Ola -->
   <div class="row" data-type="image" data-title="My Name is Ola" 
-    data-content="VR-Projekt basiert auf einem Interview mit der damals 22-jährigen Ola Ahmad aus Syrien, die vor dem Krieg in Aleppo geflohen ist.
-"
-    data-src="images/img3.jpg">
+       data-content="VR-Projekt basiert auf einem Interview mit der damals 22-jährigen Ola Ahmad aus Syrien, die vor dem Krieg in Aleppo geflohen ist." data-src="images/img3.jpg">
     <img src="images/img3.jpg" alt="My Name is Ola">
     <div class="info">
       <div class="title">My Name is Ola</div>
       <div class="expand-btn">Expand</div>
     </div>
   </div>
+
+  <!-- Row 4: XR Exhibitions -->
   <div class="row" data-type="image" data-title="XR Exhibitions" 
-    data-content="Seit 2015 Umsetzung immersiver Ausstellungen mit verschiedenen Institutionen. Über 100 Werke präsentiert und mehr als 10.000 Besucher:innen erreicht.
-" data-src="images/img4.jpg">
+       data-content="Seit 2015 Umsetzung immersiver Ausstellungen mit verschiedenen Institutionen. Über 100 Werke präsentiert und mehr als 10.000 Besucher:innen erreicht." data-src="images/img4.jpg">
     <img src="images/img4.jpg" alt="XR Exhibitions">
     <div class="info">
       <div class="title">XR Exhibitions</div>
       <div class="expand-btn">Expand</div>
     </div>
   </div>
-  <!-- Row 5: YouTube -->
+
+  <!-- Row 5: Ted Sieger's Molly Monster (YouTube) -->
   <div class="row" data-type="youtube" data-title="Ted Sieger's Molly Monster" 
-    data-content="Molly Monster ist das einzige geliebte Monster von Popo und Etna Monster. Sie verbringt ihre Tage in vertrauter Umgebung und spielt mit ihrem besten Freund Edison, einem Uhrwerkspielzeug mit eigenem Leben. Als Mama ein Ei bekommt (das Papa ausbrüten muss), begibt sich Molly auf eine abenteuerliche Reise.
-" data-src="https://www.youtube.com/embed/MCrZK1fO8q4">
+       data-content="Molly Monster ist das einzige geliebte Monster von Popo und Etna Monster. Sie verbringt ihre Tage in vertrauter Umgebung und spielt mit ihrem besten Freund Edison, einem Uhrwerkspielzeug mit eigenem Leben. Als Mama ein Ei bekommt (das Papa ausbrüten muss), begibt sich Molly auf eine abenteuerliche Reise." data-src="https://www.youtube.com/embed/MCrZK1fO8q4">
     <img src="images/img5.jpg" alt="Molly Monster">
     <div class="info">
       <div class="title">Ted Sieger's Molly Monster</div>
       <div class="expand-btn">Expand</div>
     </div>
   </div>
-  <!-- Row 6: Vimeo -->
+
+  <!-- Row 6: BAKA (Vimeo) -->
   <div class="row" data-type="vimeo" data-title="BAKA" 
-    data-content=" Regie: Immanuel Wagner
- Kurzfilm (ca. 7 Minuten) über die Absurditäten des Lebens – mit Humor erzählt.
-" data-src="https://player.vimeo.com/video/17024265">
+       data-content="Regie: Immanuel Wagner. Kurzfilm (ca. 7 Minuten) über die Absurditäten des Lebens – mit Humor erzählt." data-src="https://player.vimeo.com/video/17024265">
     <img src="images/img6.jpg" alt="BAKA">
     <div class="info">
       <div class="title">BAKA</div>
@@ -118,36 +223,84 @@ const panelContent = document.getElementById('panelContent');
 const panelImage = document.getElementById('panelImage');
 const panelVideo = document.getElementById('panelVideo');
 
+let touchStartY = 0;
+let touchEndY = 0;
+
+// Gaussian Splats URLs
+const splatsURLs = [
+  "https://superspl.at/s?id=256a801e",
+  "https://superspl.at/s?id=3e44a2a6",
+  "https://superspl.at/s?id=d884569b",
+  "https://superspl.at/s?id=1dd10959",
+  "https://superspl.at/s?id=e80adc52"
+];
+
+// Open panel
 rows.forEach(row => {
   row.querySelector('.expand-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     const type = row.dataset.type;
-    const src = row.dataset.src;
     const title = row.dataset.title;
     const content = row.dataset.content;
 
     panelTitle.textContent = title;
     panelContent.textContent = content;
 
+    // Reset previous content
+    panelImage.style.display = "none";
+    panelVideo.style.display = "none";
+    panelVideo.src = "";
+    const existingSplats = panel.querySelectorAll('.splats-frame');
+    existingSplats.forEach(f => f.remove());
+
     if(type === "image"){
-      panelImage.src = src;
+      panelImage.src = row.dataset.src;
       panelImage.style.display = "block";
-      panelVideo.style.display = "none";
-      panelVideo.src = "";
     } else if(type === "youtube" || type === "vimeo"){
-      panelVideo.src = src;
+      panelVideo.src = row.dataset.src;
       panelVideo.style.display = "block";
-      panelImage.style.display = "none";
+    } else if(type === "splats"){
+      splatsURLs.forEach(url => {
+        const iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.width = "100%";
+        iframe.height = "500";
+        iframe.allow = "fullscreen; xr-spatial-tracking";
+        iframe.classList.add('splats-frame');
+        iframe.style.border = "0";
+        iframe.style.marginBottom = "1rem";
+        panel.appendChild(iframe);
+      });
     }
 
     panel.classList.add('open');
   });
 });
 
-closeBtn.addEventListener('click', () => {
+// Close panel
+function closePanel() {
   panel.classList.remove('open');
-  panelVideo.src = ""; // stop YouTube/Vimeo
-});
+  panelVideo.src = "";
+  const existingSplats = panel.querySelectorAll('.splats-frame');
+  existingSplats.forEach(f => f.remove());
+}
+
+closeBtn.addEventListener('click', closePanel);
+
+// Swipe-to-close for mobile
+panel.addEventListener('touchstart', (e) => {
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive:true});
+
+panel.addEventListener('touchend', (e) => {
+  touchEndY = e.changedTouches[0].screenY;
+  if(touchEndY - touchStartY > 50){
+    closePanel();
+  }
+}, {passive:true});
 </script>
+
 </body>
 </html>
+
+
